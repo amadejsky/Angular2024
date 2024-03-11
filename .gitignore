@@ -1,0 +1,14 @@
+cmp-databinding-start/node_modules/
+node_modules/
+.idea/
+.vscode/
+*.iml
+*.log
+*.pot
+*.pyc
+*.swp
+*~
+._*
+.DS_Store
+*.sublime-*
+.angular-cli.json
