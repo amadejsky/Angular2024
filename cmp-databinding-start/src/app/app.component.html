@@ -1,5 +1,5 @@
 <div class="container">
-     <app-cockpit (srEvent)="onServerAdded($event)"
+     <!-- <app-cockpit (srEvent)="onServerAdded($event)"
      (bpEvent)="onBlueprintAdded($event)"></app-cockpit>
     <hr>
     <div class="row">
@@ -12,12 +12,20 @@
        *ngFor="let serverOrBlueprint of serverElements"
        [srvElement]="serverOrBlueprint"
        [name]="serverOrBlueprint.name">
-       <p>
+       <p #contentParagraph>
         <strong *ngIf="serverOrBlueprint.type === 'server'" style="color: red">{{ serverOrBlueprint.content }}</strong>
         <em *ngIf="serverOrBlueprint.type === 'blueprint'" style="color: blue">{{ serverOrBlueprint.content }}</em>
   </p></app-server-element>
       </div>
+    </div> -->
+   <app-game-control (numberEmitEvent)="emitedNumberProcess($event)"></app-game-control>
+   <div class="row">
+    <div class="col-xs-12">
+      <hr>
+      <app-even [evenNumbers]="evenNumberArray"></app-even>
+      <app-odd [oddNumbers]="oddNumberArray"></app-odd>
     </div>
+   </div>
   </div>
   
  

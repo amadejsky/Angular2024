@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild, ElementRef, ContentChild } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -9,11 +9,15 @@ export class ServerElementComponent {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
 
+  @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragrapgh: ElementRef;
+
  constructor(){
   console.log('constructor invoke');
  }
  ngOnInit(){
-  console.log('ng invoke!')
+  console.log('ng invoke!');
+  console.log('Text Content of P'+this.paragrapgh.nativeElement.textContent);
  }
 
  ngOnChanges(changes: SimpleChanges){
