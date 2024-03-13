@@ -15,5 +15,14 @@ export class ShoppingListComponent {
     new Ingredient('Garlic',1)
   ];
 
+  ngOnInit(){
+    
+  }
+
+  addToArray(ingredient: Ingredient){
+    this.ingredients.push(ingredient);
+    console.log('Ingredient added to data base! (Array)')
+  }
+
 
 }
