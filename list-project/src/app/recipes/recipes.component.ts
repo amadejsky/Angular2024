@@ -1,18 +1,25 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { defaultUrlMatcher } from '@angular/router';
 import { Recipe } from '../shared/recipe.model';
+import { RecipeService } from './recipe.service';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.css'
+  styleUrl: './recipes.component.css',
+  providers: [RecipeService]
 })
-export class RecipesComponent {
-  @Output() recipeEmitFromList = new EventEmitter<Recipe>();
+export class RecipesComponent implements OnInit{
+  // @Output() recipeEmitFromList = new EventEmitter<Recipe>();
   selectedRecipe: Recipe;
-
-  uploadSelectedRecipe(event: Recipe){
-    this.selectedRecipe=event;
+  constructor(private recipeService: RecipeService){}
+  ngOnInit(): void {
+    this.recipeService.recipeSelected.subscribe(
+      (recipe: Recipe) => {
+        this.selectedRecipe=recipe;
+      }
+    );
   }
+  
 
 }

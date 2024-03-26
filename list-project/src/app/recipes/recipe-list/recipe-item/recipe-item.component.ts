@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../../../shared/recipe.model'
+import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -8,7 +9,7 @@ import { Recipe } from '../../../shared/recipe.model'
 })
 export class RecipeItemComponent {
   @Input('recipeModel') recipe: Recipe;
-  @Output() emitData = new EventEmitter<Recipe>();
+  constructor(private recipeService: RecipeService){}
  
   ngOnInit(){
     // console.log('recipe image path is: '+this.recipe.imagePath);
@@ -17,7 +18,7 @@ export class RecipeItemComponent {
     // console.log('recipe object is: '+this.recipe)
   }
   emitDataDetails(recipe: Recipe){
-    this.emitData.emit(recipe);
+    this.recipeService.recipeSelected.emit(this.recipe);
   }
 
 }
