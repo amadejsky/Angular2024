@@ -18,4 +18,11 @@ export class ShoppingListService{
         this.ingredients.push(ingredient);
         this.ingredientsChange.emit(this.ingredients.slice());
     }
+
+    addItems(ingredients: Ingredient[]){
+        for(const ingredient of ingredients){
+            this.addItem(ingredient);
+        }
+    }
+
 }
