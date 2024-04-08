@@ -1,21 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Recipe } from '../../../shared/recipe.model'
 import { RecipeService } from '../../recipe.service';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
   styleUrl: './recipe-item.component.css'
 })
-export class RecipeItemComponent {
+export class RecipeItemComponent implements OnInit{
   @Input('recipeModel') recipe: Recipe;
-  constructor(private recipeService: RecipeService){}
+  constructor(private recipeService: RecipeService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){}
  
   ngOnInit(){
-    // console.log('recipe image path is: '+this.recipe.imagePath);
-    // console.log('recipe name is: '+this.recipe.name);
-    // console.log('recipe desc is: '+this.recipe.description);
-    // console.log('recipe object is: '+this.recipe)
+    // this.recipe = this.recipeService.getRecipeById(this.route.snapshot.queryParams['id']);
   }
   emitDataDetails(recipe: Recipe){
     this.recipeService.recipeSelected.emit(this.recipe);

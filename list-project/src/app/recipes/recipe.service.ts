@@ -29,6 +29,16 @@ export class RecipeService{
     addIngredients(ingredients: Ingredient[]){
         this.shoppingService.addItems(ingredients);
     }
+
+    getRecipeById(id: number){
+        try{
+             return this.recipes[id];
+        }catch (error){
+            console.log('Error occured: '+error );
+        }
+       
+        
+    }
     
     
 }
