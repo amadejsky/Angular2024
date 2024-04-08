@@ -11,8 +11,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#" (click)="onSelect('recipe')">Recipes</a>
-                    <a href="#" (click)="onSelect('shopping-list')">Shopping List</a>
+                    <a href="#" [routerLink]="['/recipes']">Recipes</a>
+                    <a href="#" [routerLink]="['/shoppinglist']">Shopping List</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
