@@ -10,16 +10,18 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 })
 export class RecipeItemComponent implements OnInit{
   @Input('recipeModel') recipe: Recipe;
+  @Input() id: number;
   constructor(private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute
   ){}
  
   ngOnInit(){
-    // this.recipe = this.recipeService.getRecipeById(this.route.snapshot.queryParams['id']);
+  //  this.recipe = this.recipeService.getRecipeById(this.route.snapshot.queryParams['id']);
+  console.log('id is '+this.id)
   }
-  emitDataDetails(recipe: Recipe){
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
+  // emitDataDetails(recipe: Recipe){
+  //   this.recipeService.recipeSelected.emit(this.recipe);
+  // }
 
 }

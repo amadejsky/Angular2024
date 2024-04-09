@@ -1,6 +1,7 @@
-<a [routerLink]="['/recipes/recipe.id']"
+<a [routerLink]="['/recipes',id]"
     style="cursor: pointer;"
-    class="list-group-item clearfix" (click)="emitDataDetails(recipe)" >
+    routerLinkActive="active"
+    class="list-group-item clearfix">
     <div class="pull-left">
         <h4 class="list-group-item-heading" id="name">{{recipe.name}}</h4>
         <p class="list-group-item-text">{{recipe.description}}</p>
