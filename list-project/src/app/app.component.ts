@@ -7,12 +7,6 @@ import { Recipe } from '../app/shared/recipe.model'
 })
 export class AppComponent {
   title = 'list-project';
-  loadedFeature = 'recipe'
 
-  navigate(emited: string){
-    this.loadedFeature = emited;
-  }
-
-  
 
 }
