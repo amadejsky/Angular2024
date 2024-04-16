@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-
+      <div class="btn btn-primary" (click)="formOrAssigment=!formOrAssigment">Form or Assigment</div>
+      <hr>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" *ngIf="!formOrAssigment">
         <div formGroupName="userData">
           <div class="form-group">
             <label for="username">Username</label>
@@ -54,6 +55,8 @@
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
+      <!-- Assigment -->
+      <app-assigment *ngIf="formOrAssigment"></app-assigment>
     </div>
   </div>
 </div>

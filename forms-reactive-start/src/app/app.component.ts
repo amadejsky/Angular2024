@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   genders = ['male', 'female'];
   signupForm: FormGroup;
   forbiddenUsernames = ['Adi','Test'];
+  formOrAssigment = false;
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -22,8 +23,8 @@ export class AppComponent implements OnInit{
       'gender': new FormControl('male'),
       'hobbies': new FormArray([]) 
     });
-    // this.signupForm.valueChanges.subscribe(
-    //   (value) => console.log(value))
+    this.signupForm.valueChanges.subscribe(
+      (value) => console.log(value))
     this.signupForm.statusChanges.subscribe(
       (status) => console.log(status)
     );
@@ -77,4 +78,7 @@ export class AppComponent implements OnInit{
     });
     return promise;
   }
+
+  
+
 }
