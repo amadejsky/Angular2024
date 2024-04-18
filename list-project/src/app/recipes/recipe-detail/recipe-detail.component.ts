@@ -38,4 +38,8 @@ export class RecipeDetailComponent implements OnInit {
     console.log('item (object) from details '+this.recipe)
   }
 
+  onEdit(){
+    
+  }
+
 }
