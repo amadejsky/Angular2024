@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Post } from './post.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +14,8 @@ export class AppComponent implements OnInit{
   signupForm: FormGroup;
   forbiddenUsernames = ['Adi','Test'];
   formOrAssigment = false;
+  loadedPosts = [];
+  constructor(private http: HttpClient){}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -79,6 +83,44 @@ export class AppComponent implements OnInit{
     return promise;
   }
 
-  
+  onCreatePost(postData: Post) {
+
+    this.http
+    .post<{name: string}>(
+      'https://angular-ms-project-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
+       { username: this.signupForm.get('userData.username').value,
+       email: this.signupForm.get('userData.email').value}
+      ).subscribe(responseData => {
+        console.log(responseData);
+      });
+
+  }
+
+  onFetchPosts() {
+   this.fetchPosts();
+  }
+
+  onClearPosts() {
+    // Send Http request
+  }
+
+  private fetchPosts(){
+    this.http
+    .get<{ [key:string]: Post}>(
+      'https://angular-ms-project-default-rtdb.europe-west1.firebasedatabase.app/posts.json'
+    )
+    .pipe(map(responseData => {
+      const postsArray: Post[] = [];
+      for (const key in responseData){
+        if(responseData.hasOwnProperty(key)){
+          postsArray.push({ ...responseData[key], id: key })
+        }
+      }
+      return postsArray;
+    })
+  ).subscribe(data => {
+      this.loadedPosts = data;
+    });
+  }
 
 }

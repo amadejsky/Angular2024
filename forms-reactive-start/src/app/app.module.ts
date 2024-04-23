@@ -9,6 +9,7 @@ import { AssigmentComponent } from './assigment/assigment.component';
 import { AngularFireModule } from '@angular/fire/compat';
 
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 // const routes: Routes = [
 //   { path: '', component: AppComponent},
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule
   
   ],
   providers: [],

@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <div class="btn btn-primary" (click)="formOrAssigment=!formOrAssigment">Form or Assigment</div>
       <hr>
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" *ngIf="!formOrAssigment">
+      <form [formGroup]="signupForm" #postForm="ngForm" (ngSubmit)="onCreatePost(postForm)" *ngIf="!formOrAssigment">
         <div formGroupName="userData">
           <div class="form-group">
             <label for="username">Username</label>
@@ -32,14 +32,14 @@
           </div>
         </div>
        
-        <div class="radio" *ngFor="let gender of genders">
+        <!-- <div class="radio" *ngFor="let gender of genders">
           <label>
             <input
               type="radio"
               formControlName="gender"
               [value]="gender">{{ gender }}
           </label>
-        </div>
+        </div> -->
         <div formArrayName="hobbies">
           <h4>Your Hobies</h4>
           <button 
