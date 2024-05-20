@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { LoggingService } from "../test-logging.service";
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import { SharedModule } from "../shared/shared.module";
     imports: [
         FormsModule,
         RouterModule.forChild([
-            { path: 'shoppinglist', component: ShoppingListComponent},
+            { path: '', component: ShoppingListComponent},
         ]), 
         SharedModule
-    ]
+    ],
+    // providers: [LoggingService]
 })
 export class ShoppingListModule{
 
