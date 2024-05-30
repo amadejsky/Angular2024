@@ -3,6 +3,9 @@ import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { ADD_ING, AddIngredient } from '../store/shopping-list.actions';
+import * as ShoppingActions from '../store/shopping-list.actions'
 
 @Component({
   selector: 'app-shopping-edit',
@@ -19,7 +22,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   // @ViewChild('name') name: ElementRef<HTMLInputElement>;
   // @ViewChild('amount') amount: ElementRef<HTMLInputElement>;
   // @Output('emitIngredient') emitIngredient = new EventEmitter<Ingredient>();
-  constructor(private shoppingService: ShoppingListService){}
+  constructor(
+    private shoppingService: ShoppingListService,
+    private store: Store<{
+      shoppingList: { ingredients: Ingredient[]}
+    }>
+  ){}
   
   addIngredientToArray(form: NgForm){
     const value = form.value;
@@ -28,7 +36,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         this.shoppingService.updateIngredient(this.editedItemIndex, newIngredient);
         console.log('item updated')
     }else{
-      this.shoppingService.addItem(newIngredient);
+      // this.shoppingService.addItem(newIngredient);
+      this.store.dispatch(new ShoppingActions.AddIngredient(newIngredient))  
       
     }this.editMode = !this.editMode;
       this.slForm.reset();
