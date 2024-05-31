@@ -12,6 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import { shoppingReducer } from './shopping-list/store/shopping-list.reducer';
 import { authReducer } from './auth/store/auth.reducer';
 import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -19,6 +21,7 @@ import * as fromApp from './store/app.reducer';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthEffects]),
     AuthModule,
     SharedModule,
     CoreModule
