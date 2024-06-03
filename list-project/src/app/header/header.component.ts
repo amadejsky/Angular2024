@@ -1,6 +1,4 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { DataSotrageService } from '../shared/data-storage-service';
-import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as FromApp from '../store/app.reducer';
@@ -18,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   @Output('selected') selected = new EventEmitter<string>();
 
-  constructor(private dataStorageService: DataSotrageService, private authService: AuthService,
+  constructor(
     private store: Store<FromApp.AppState>
   ){}
 
@@ -27,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSaveData(){
-    this.dataStorageService.storeRecipes();
+    this.store.dispatch(new RecipeActions.StoreRecipes())
   }
 
   onFetchData(){
